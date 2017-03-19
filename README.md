@@ -14,7 +14,7 @@ npm run webpack-devserver
 ```
 To start this application open your app on `http://localhost:8090`
 
-## Production
+### Production
 ```javascript
 npm run build
 ```
