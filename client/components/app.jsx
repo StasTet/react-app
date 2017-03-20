@@ -2,29 +2,30 @@ import React from 'react';
 
 class Main extends React.Component {
 
-	getInitialState() {
-		return{
-			name: 'Stas'
+	constructor(props) {
+		super(props);
+		this.state = {
+			name: 'Stas',
 		};
-	},
+		this.handleChange = this.handleChange.bind(this);
+	}
 
-	handlerOnChange(e) {
-		this.setState({
-			name: e.target.value
-		})
-	},
+	handleChange(event) {
+		this.setState({name: event.target.value});
+	}
+
 
 	render() {
-		return <h1>Page {this.state.name}</h1>
+		return (
 			<div className="container">
 				<div className="page-header">
-					
+					<h1>Page {this.state.name}</h1>
 				</div>
 				<div>
-					<input type="text" placeholder={this.state.name} onChange={this.handlerOnChange}/>
+					<input type="text" value={this.state.name} onChange={this.handleChange}/>
 				</div>
 			</div>
-		
+		)
 	}
 }
 

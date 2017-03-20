@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Main from './client/components/app.jsx';
+import Main from '../client/components/app.jsx';
 
 // class Main extends React.Component {
 
