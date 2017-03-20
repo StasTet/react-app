@@ -7,21 +7,24 @@ module.exports = {
           publicPath: "build/",
           filename: "bundle.js"
       },
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
   module: {
-    loaders: [
+    rules: [
       {
-        test: /.jsx?$/,
+        test: /\.(js|jsx)$/,
         loader: 'babel-loader',
         exclude: /(node_modules|bower_components)/,
         query: {
           presets: ['es2015', 'react']
         }
       },
-      {
-        test: /\.jsx$/,
-        loader: "react-hot!babel",
-        exclude: [/node_modules/, /public/]
-      }
+      // {
+      //   test: /\.jsx$/,
+      //   loader: "react-hot!babel",
+      //   exclude: [/node_modules/, /public/]
+      // }
     ]
   }
 };
