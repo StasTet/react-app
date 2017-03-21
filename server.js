@@ -23,25 +23,25 @@ app.use(cors({ origin: '*' }));
 app.use(methodOverride('X-HTTP-Method-Override'));
 
 // middleware to use for all requests
-router.use( (req, res, next) => {
-    console.log('Something is happening.');
-    next(); // make sure we go to the next routes and don't stop here
-});
+// router.use( (req, res, next) => {
+//     console.log('Something is happening.');
+//     next(); // make sure we go to the next routes and don't stop here
+// });
 
 app.get('/', (req,res) =>{
 	res.sendFile(__dirname + '/public/index.html');
-	// res.json({ message: 'hooray! welcome to our api!' });
 });
 
 
 router.route('/diary')
-    // create a diary (accessed at POST http://localhost:8080/api/diarys)
+    // create a diary (accessed at POST http://localhost:8080/api/diary)
     .post( (req, res) => {
 
         let diary = new Diary();      // create a new instance of the Diary model
-        diary.name = req.body.name;  // set the diary name
-				diary.text = req.body.text;
-				diary.mark = req.body.mark;
+        diary.name = req.query.name;  // set the diary name
+				diary.text = req.query.text;
+				diary.mark = req.query.mark;
+				// console.log(req);
 
         // save the diary and check for errors
         diary.save( (err) => {
@@ -53,7 +53,7 @@ router.route('/diary')
 
     })
 
-    // get all the diarys (accessed at GET http://localhost:8080/api/diarys)
+    // get all the diarys (accessed at GET http://localhost:8080/api/diary)
     .get( (req, res) => {
         Diary.find( (err, diary) => {
             if (err)
@@ -66,7 +66,6 @@ router.route('/diary')
 // ----------------------------------------------------
 
 router.route('/diary/:diary_id')
-
     // get the diary with that id (accessed at GET http://localhost:8080/api/diary/:diary_id)
     .get( (req, res) => {
         Diary.findById(req.params.diary_id, (err, diary) => {
