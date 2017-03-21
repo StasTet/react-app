@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
+import config from './config.json';
 
 export function setUpConnection(){
-	//let url = 'mongodb://admin:admin@tastbaar.mongo.xervo.io:27017/idedY4ru';
-	mongoose.connect('mongodb://admin:admin@tastbaar.mongo.xervo.io:27017/idedY4ru');
+	const url = `mongodb://${config.db.user}:${config.db.pass}@olympia.modulusmongo.net:${config.db.port}/inemat4A`;
+	mongoose.Promise = global.Promise;
+	mongoose.connect(url);
 }
