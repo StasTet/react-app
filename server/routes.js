@@ -1,5 +1,5 @@
 import express from 'express';
-import Diary from './config/models/model.js';
+import Diary from './models/model.js';
 
 const router = express.Router();
 
