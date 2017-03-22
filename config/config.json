@@ -1,8 +1,0 @@
-{
-	"port": 3000,
-	"db": {
-		"port" : 27017,
-		"user" : "admin",
-		"pass" : "admin"
-	}
-}

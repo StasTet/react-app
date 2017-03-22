@@ -1,47 +1,23 @@
 import express from 'express';
-import favicon from 'serve-favicon'
-import path from 'path';
-import morgan from 'morgan';
-import bodyParser from 'body-parser';
-import cors from 'cors';
-import methodOverride from 'method-override';
-import config from './config/config.json';
-import * as db from './config/db.js';
-import Diary from './app/models/model.js';
+import Diary from './config/models/model.js';
 
-const app = express();
 const router = express.Router();
 
-db.setUpConnection();
-
-app.use(express.static(path.join(__dirname, 'public')))
-app.use(morgan('dev'));
-app.use(favicon(path.join(__dirname, 'favicon.ico')))
-app.use(bodyParser.urlencoded({'extended':'true'}));
-app.use(bodyParser.json());
-app.use(cors({ origin: '*' }));
-app.use(methodOverride('X-HTTP-Method-Override'));
-
-// middleware to use for all requests
-// router.use( (req, res, next) => {
-//     console.log('Something is happening.');
-//     next(); // make sure we go to the next routes and don't stop here
-// });
-
-app.get('/', (req,res) =>{
-	res.sendFile(__dirname + '/public/index.html');
+//middleware to use for all requests
+router.use( (req, res, next) => {
+    console.log('Something is happening.');
+    next(); // make sure we go to the next routes and don't stop here
 });
-
 
 router.route('/diary')
     // create a diary (accessed at POST http://localhost:8080/api/diary)
     .post( (req, res) => {
 
         let diary = new Diary();      // create a new instance of the Diary model
-        diary.name = req.query.name;  // set the diary name
-				diary.text = req.query.text;
-				diary.mark = req.query.mark;
-				// console.log(req);
+        diary.name = req.body.name;  // set the diary name
+		diary.text = req.body.text;
+		diary.mark = req.body.mark;
+		// console.log(req);
 
         // save the diary and check for errors
         diary.save( (err) => {
@@ -107,14 +83,4 @@ router.route('/diary/:diary_id')
 				});
 		})
 
-
-app.use('/api', router);
-
-// app.get('/api', (req,res) =>{
-// 	res.json({
-//         status: "My API is alive!"
-//     });
-// });
-
-app.listen(config.port);
-console.log(`Server is up and running on port ${config.port}`);
+export default router;

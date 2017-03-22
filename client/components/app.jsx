@@ -19,7 +19,7 @@ class Main extends React.Component {
 		return (
 			<div className="container">
 				<div className="page-header">
-					<h1>Pag22222e {this.state.name}</h1>
+					<h1>Page {this.state.name}</h1>
 				</div>
 				<div>
 					<input type="text" value={this.state.name} onChange={this.handleChange}/>
