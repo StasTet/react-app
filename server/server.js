@@ -10,7 +10,7 @@ import * as db from './config/db.js';
 import router from './routes.js';
 
 export function startServer() {
-	
+
 	const app = express();
 
 	db.setUpConnection();
