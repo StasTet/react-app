@@ -19,12 +19,7 @@ module.exports = {
         query: {
           presets: ['es2015', 'react']
         }
-      },
-      // {
-      //   test: /\.jsx$/,
-      //   loader: "react-hot!babel",
-      //   exclude: [/node_modules/, /public/]
-      // }
+      }
     ]
   }
 };

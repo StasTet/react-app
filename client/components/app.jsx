@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-class Main extends React.Component {
+import diaryList from './diaryList.jsx';
+
+class Main extends Component {
 
 	constructor(props) {
 		super(props);
@@ -25,6 +27,7 @@ class Main extends React.Component {
 					<input type="text" value={this.state.name} onChange={this.handleChange}/>
 				</div>
 			</div>
+
 		)
 	}
 }

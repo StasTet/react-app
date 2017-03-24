@@ -10,14 +10,14 @@ import * as db from './config/db.js';
 import router from './routes.js';
 
 export function startServer() {
-
+	
 	const app = express();
 
 	db.setUpConnection();
 
-	app.use(express.static(path.join(__dirname, 'client')))
+	app.use(express.static(path.join('client')));
 	app.use(morgan('dev'));
-	app.use(favicon(path.join(__dirname, './client/src/favicon.ico')))
+	app.use(favicon(path.join('./client/src/favicon.ico')));
 	app.use(bodyParser.urlencoded({'extended':'true'}));
 	app.use(bodyParser.json());
 	app.use(cors({ origin: '*' }));
@@ -31,5 +31,4 @@ export function startServer() {
 
 	app.listen(config.port);
 	console.log(`Server is up and running on port ${config.port}`);
-
 }

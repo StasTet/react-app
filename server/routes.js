@@ -15,9 +15,9 @@ router.route('/diary')
 
         let diary = new Diary();      // create a new instance of the Diary model
         diary.name = req.body.name;  // set the diary name
-		diary.text = req.body.text;
-		diary.mark = req.body.mark;
-		// console.log(req);
+    		diary.text = req.body.text;
+    		diary.mark = req.body.mark;
+		      // console.log(req);
 
         // save the diary and check for errors
         diary.save( (err) => {
